@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+   >
+
+    <ScrollView
+        android:id="@+id/routeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:layout_marginBottom="10dp" >
+
+    <LinearLayout      
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="10dp"
+        android:orientation="vertical" >
+
+        <com.tongji.ontimesubway.view.LineButton
+            android:id="@+id/Route_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+             />
+
+        <com.tongji.ontimesubway.view.LineButton
+            android:id="@+id/Route_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            />
+
+        <com.tongji.ontimesubway.view.LineButton
+            android:id="@+id/Route_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            />
+
+        <com.tongji.ontimesubway.view.LineButton
+            android:id="@+id/Route_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            />
+
+        <com.tongji.ontimesubway.view.LineButton
+            android:id="@+id/Route_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            />
+
+        <com.tongji.ontimesubway.view.LineButton
+            android:id="@+id/Route_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            />
+
+        <com.tongji.ontimesubway.view.LineButton
+            android:id="@+id/Route_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            />
+
+        <com.tongji.ontimesubway.view.LineButton
+            android:id="@+id/Route_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            />
+
+        <com.tongji.ontimesubway.view.LineButton
+            android:id="@+id/Route_9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            />
+
+        <com.tongji.ontimesubway.view.LineButton
+            android:id="@+id/Route_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            />
+
+        <com.tongji.ontimesubway.view.LineButton
+            android:id="@+id/Route_11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="5dp"
+            />
+    </LinearLayout>
+</ScrollView>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="5dp"
+        android:layout_toRightOf="@+id/routeLayout" >
+
+        <RelativeLayout
+            android:id="@+id/routeMap_layout"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+             >
+
+            <TextView
+				android:id="@+id/route_name"                
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerHorizontal="true"
+				android:layout_alignParentTop="true"
+				android:text="1号线"
+				android:textSize="13sp"
+				></TextView>
+            <ListView
+                android:id="@+id/route_station_list"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_below="@+id/route_name" 
+                android:listSelector="@android:color/transparent"
+                >
+            </ListView>
+            
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/stationinfo_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/routeMap_layout"
+             >
+            <Button
+                android:id="@+id/selectOK"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:textColor="@color/white"
+                android:background="@drawable/titlebutton"
+                android:text="@string/enter" />
+
+            <TextView
+                android:id="@+id/stationInfo"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_above="@+id/selectOK"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:layout_marginBottom="20dp"
+                android:text="text" />
+
+            
+       
+        </RelativeLayout>
+        
+    </RelativeLayout>
+
+</RelativeLayout>

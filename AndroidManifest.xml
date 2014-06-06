@@ -9,19 +9,40 @@
         android:targetSdkVersion="14" />
 
     <application
+        android:name="com.tongji.ontimesubway.base.BaseAppClient"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.Light.NoTitleBar" >
+        android:theme="@style/myTitleTheme" >
         <activity
-            android:name="com.tongji.ontimesubway.MainActivity"
-            android:label="@string/app_name" 
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            android:name="com.tongji.ontimesubway.ui.MainActivity"
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.tongji.ontimesubway.ui.CollectCenterActivity"
+            android:label="@string/title_activity_collect_cneter" >
+        </activity>
+        <activity
+            android:name="com.tongji.ontimesubway.ui.StationCenter"
+            android:label="@string/title_activity_station_center" >
+        </activity>
+        <activity
+            android:name="com.tongji.ontimesubway.ui.RemindCenter"
+            android:label="@string/title_activity_remind_center" >
+        </activity>
+        <activity
+            android:name="com.tongji.ontimesubway.ui.SelectStationPart"
+            android:label="@string/title_activity_select_station_part" 
+            android:theme="@style/MyPopStyle" >
+        </activity>
     </application>
+
+    <!-- permission -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

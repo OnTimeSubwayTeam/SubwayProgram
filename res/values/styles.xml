@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -16,5 +16,27 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
+    
+    <!-- 自定义title bar theme -->
+    <style name="CustomWindowTitleBackground">  
+       <item name="android:background">@color/lightgray</item>  
+	</style>  
+  
+  
+	<style name="myTitleTheme" parent="android:Theme">  
+     <item name="android:windowTitleSize">50dp</item>  
+     <item name="android:windowTitleBackgroundStyle">@style/CustomWindowTitleBackground</item>  
+</style>
+
+	<style name="MyPopStyle"> 
+		<item name="android:windowBackground">@android:color/transparent</item> 
+		<item name="android:windowFrame">@null</item> 
+		<item name="android:windowNoTitle">true</item> 
+		<item name="android:windowIsFloating">true</item> 
+		<item name="android:windowIsTranslucent">true</item> 
+		<item name="android:windowContentOverlay">@null</item> 
+		<item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item> 
+		<item name="android:backgroundDimEnabled">true</item> 
+	</style>   
 
 </resources>

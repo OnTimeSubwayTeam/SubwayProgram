@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/MapLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <com.tongji.ontimesubway.view.DragImageView
+        android:id="@+id/subway_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        ></com.tongji.ontimesubway.view.DragImageView>
+
+    <ImageView
+        android:id="@+id/clickDot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/subway_map"
+        android:layout_marginLeft="68dp"
+        android:layout_marginTop="181dp"
+        android:layout_toRightOf="@+id/subway_map"
+        android:src="@drawable/circularbutton" />
+
+</RelativeLayout>

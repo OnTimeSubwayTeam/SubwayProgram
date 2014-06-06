@@ -1,0 +1,4 @@
+{"stationID":1,"name":"曹杨路","routeGroup":[1]}
+{"stationID":2,"name":"安亭路","routeGroup":[1,2]}
+{"stationID":3,"name":"荣坚路","routeGroup":[1,2]}
+{"stationID":4,"name":"不会路","routeGroup":[1,2]}
