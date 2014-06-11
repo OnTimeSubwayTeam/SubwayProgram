@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:background="@color/grey" >
+
+    <LinearLayout
+        android:id="@+id/center_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center" >
+
+        <com.tongji.ontimesubway.view.MenuButton
+            android:id="@+id/Menu_Main_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+             />
+
+        <com.tongji.ontimesubway.view.MenuButton
+            android:id="@+id/Menu_Collect_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+             />
+
+        <com.tongji.ontimesubway.view.MenuButton
+            android:id="@+id/Menu_Remind_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+             />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/center_layout"
+        android:background="@color/white" />
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/center_layout"
+        android:layout_alignLeft="@+id/center_layout"
+        android:layout_marginTop="20dp" >
+
+        <LinearLayout
+            android:id="@+id/collectStationlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <RelativeLayout
+        android:id="@+id/menu_bottom_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/menu_bottom"
+        >
+    <View
+        android:id="@+id/menu_botton_layout_inbutton"
+        android:layout_width="80dp"
+        android:layout_height="5dp"
+        android:layout_centerHorizontal="true"     
+        android:layout_centerVertical="true"
+        android:background="@drawable/menu_bottom_button"
+         >
+    </View>
+    </RelativeLayout>
+    
+</RelativeLayout>

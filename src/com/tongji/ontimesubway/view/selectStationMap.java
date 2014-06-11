@@ -31,7 +31,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-@SuppressLint("NewApi")
+@SuppressLint({ "NewApi", "ValidFragment" })
 public class selectStationMap extends Fragment{
 	private LineButton[] RouteGroupButton=new LineButton[11];
 	private RelativeLayout layout;
@@ -41,6 +41,23 @@ public class selectStationMap extends Fragment{
 	private StationViewAdapter stationAdapter;
 	private int lastSelectPosition=-1;
 	private TextView routeName;
+	private SelectEvent selectEvent=new SelectEvent(){
+
+		@Override
+		public void AfterGetStation(int StationID) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	};
+	public selectStationMap(SelectEvent event)
+	{
+		this.selectEvent=event;
+	}
+	public void setSelectEvent(SelectEvent event)
+	{
+		this.selectEvent=event;
+	}
 	@Override  
 	 public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) { 
 		super.onCreateView(inflater, container, savedInstanceState);
@@ -145,10 +162,11 @@ public class selectStationMap extends Fragment{
 	{
 	   //Toast.makeText(this.getActivity(), "跳转", Toast.LENGTH_LONG);
 		//跳转
-		Intent intent=new Intent();
-		intent.setClass(getActivity(), StationCenter.class);
-		intent.putExtra("StationID", StationID);
-		startActivity(intent);
+		this.selectEvent.AfterGetStation(StationID);
+	}
+	public interface SelectEvent{
+		//获取选中的station后的执行回调
+		public void AfterGetStation(int StationID);	
 	}
 	
 }

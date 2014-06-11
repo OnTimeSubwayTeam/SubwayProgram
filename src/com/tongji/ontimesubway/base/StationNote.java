@@ -8,11 +8,13 @@ import android.graphics.drawable.Drawable;
 public class StationNote {
 	private int stationID;
 	private String name;
-	private String mapURL;
+	private ArrayList<String> mapURL;
 	private String info;
 	public StationNote next;
 	public StationNote fore;
 	public ArrayList<Integer> routeGroup;
+	//isWC=0: 无wc， isWC=1; 有wc
+	private int isWC;
 	public StationNote()
 	{
 		setStationID(0);
@@ -21,15 +23,16 @@ public class StationNote {
 		next=null;
 		fore=null;
 		routeGroup=null;
+		setIsWC(0);
 	}
-	public StationNote(int id,String name, String mapurl,StationNote next, StationNote fore, ArrayList<Integer> routegroup)
+	public StationNote(int id,String name,StationNote next, StationNote fore, ArrayList<Integer> routegroup)
 	{
 		this.stationID=id;
 		this.name=name;
-		this.mapURL=mapurl;
 		this.next=next;
 		this.fore=fore;
 		this.routeGroup=routegroup;
+		setIsWC(0);
 	}
 	public int getStationID() {
 		return stationID;
@@ -43,16 +46,16 @@ public class StationNote {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getMapURL() {
-		return mapURL;
+	public ArrayList<String> getMapURL() {
+		return this.mapURL;
 	}
-	public void setMapURL(String mapURL) {
+	public void setMapURL(ArrayList<String> mapURL) {
 		this.mapURL = mapURL;
 	}
 
 	public String getRouteName()
 	{
-		StringBuffer routeName = new StringBuffer("地铁 ");
+		StringBuffer routeName = new StringBuffer();
 		Iterator<Integer> it=routeGroup.iterator();
 		while(it.hasNext()){
 			routeName.append(it.next().toString());
@@ -61,6 +64,10 @@ public class StationNote {
 		}
 		routeName.append("线");
 		return routeName.toString();
+	}
+	public ArrayList<Integer> getRouteGroup()
+	{
+		return this.routeGroup;
 	}
 	public Drawable getMap()
 	{
@@ -71,5 +78,11 @@ public class StationNote {
 	}
 	public void setInfo(String info) {
 		this.info = info;
+	}
+	public int getIsWC() {
+		return isWC;
+	}
+	public void setIsWC(int isWC) {
+		this.isWC = isWC;
 	}
 }

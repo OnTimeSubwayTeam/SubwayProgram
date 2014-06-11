@@ -6,6 +6,8 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.text.method.MovementMethod;
 import android.util.AttributeSet;
@@ -109,14 +111,26 @@ public class DragImageView extends ImageView {
 		bitmap_W = bm.getWidth();
 		bitmap_H = bm.getHeight();
 
-		MAX_W = bitmap_W * 1;
-		MAX_H = bitmap_H * 1;
+		MAX_W = bitmap_W * 2;
+		MAX_H = bitmap_H * 2;
 
-		//MIN_W = bitmap_W / 3;
-		//MIN_H = bitmap_H / 3;
+		MIN_W = bitmap_W / 2;
+		MIN_H = bitmap_H / 2;
 
 	}
+	public void setMax_W_H(int max_w, int max_h)
+	{
+		this.MAX_W=max_w;
+		this.MAX_H=max_h;
+	}
 
+	@Override
+	public void setBackgroundDrawable(Drawable drawable)
+	{
+		//BitmapDrawable bd=(BitmapDrawable)drawable;
+		Bitmap bm=((BitmapDrawable)drawable).getBitmap();
+		setImageBitmap(bm);
+	}
 	@Override
 	protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
 		super.onLayout(changed, left, top, right, bottom);

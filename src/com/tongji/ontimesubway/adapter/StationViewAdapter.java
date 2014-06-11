@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -59,7 +60,9 @@ public class StationViewAdapter extends BaseAdapter{
 			holder=new Holder();
 			convertView=this.mInflater.inflate(R.layout.route_station_list_view, null);
 			holder.layout=(LinearLayout)convertView.findViewById(R.id.sation_view_image_layout);
-			holder.station=(TextView)convertView.findViewById(R.id.station_view_station);			
+			holder.station=(TextView)convertView.findViewById(R.id.station_view_station);	
+			holder.wc=(ImageView)convertView.findViewById(R.id.station_view_wc);
+			holder.translate=(ImageView)convertView.findViewById(R.id.station_view_translate);
 			convertView.setTag(holder);
 		}
 		else 
@@ -68,7 +71,7 @@ public class StationViewAdapter extends BaseAdapter{
 		}
 		String bgName="station_button_"+String.valueOf(RouteID);
 		try {
-			Log.d("try","hello");
+//			Log.d("try","hello");
 			Field field=R.drawable.class.getField(bgName);
 			int resInt= field.getInt(new R.drawable());
 			holder.station.setBackgroundResource(resInt);
@@ -84,6 +87,23 @@ public class StationViewAdapter extends BaseAdapter{
 		}
 		String stationName=BaseAppClient.getStation(mList.get(position)).getName();
 		holder.station.setText(stationName);
+		if(BaseAppClient.getStation(mList.get(position)).getIsWC()==0)
+		{
+			holder.wc.setVisibility(View.INVISIBLE);
+		}
+		else 
+		{
+			holder.wc.setVisibility(View.VISIBLE);
+		}
+		
+		if(BaseAppClient.getStation(mList.get(position)).getRouteGroup().size()>1)
+		{
+			holder.translate.setVisibility(View.VISIBLE);
+		}
+		else 
+		{
+			holder.translate.setVisibility(View.INVISIBLE);
+		}
 		return convertView;
 	}
 	/**
@@ -100,8 +120,10 @@ public class StationViewAdapter extends BaseAdapter{
 	}
 	private class Holder
 	{
-		LinearLayout layout;
-		TextView station;
+		private LinearLayout layout;
+		private TextView station;
+		private ImageView wc;
+		private ImageView translate;
 	}
 
 }

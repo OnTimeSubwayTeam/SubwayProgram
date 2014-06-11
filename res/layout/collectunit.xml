@@ -1,39 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="100dp"
     android:background="@color/white"
     android:orientation="horizontal" 
     android:gravity="center_vertical">
 
-    <TextView
-        android:id="@+id/collectunit_start"
-        android:layout_width="wrap_content"
+     <HorizontalScrollView
+        android:id="@+id/collect_route_unit_hs"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_margin="20dp"
-        android:text="昌吉东路" 
-        android:textSize="18sp"/>
+        android:scrollbars="none" >
 
-    <TextView
-        android:id="@+id/collectunit_center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/collectunit_start"
-        android:layout_centerHorizontal="true"
-        android:text="--->"
-        android:textSize="20sp"
-         />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
 
-    <TextView
-        android:id="@+id/collectunit_end"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_margin="20dp"
-        android:text="11号线" 
-        android:textSize="18sp"/>
+            <RelativeLayout
+                android:id="@+id/collect_route_left"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                 <TextView
+				        android:id="@+id/collectunit_start"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:layout_alignParentLeft="true"
+				        android:layout_alignParentTop="true"
+				        android:layout_margin="20dp"
+				        android:text="昌吉东路" 
+				        android:textSize="18sp"
+				        android:textColor="@color/black"/>
+
+			    <LinearLayout
+			        android:id="@+id/collectunit_center"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_alignBottom="@+id/collectunit_start"
+			        android:layout_centerHorizontal="true"
+			        android:orientation="horizontal"
+			         >
+
+			        <ImageView
+			            android:id="@+id/wc"
+			            android:layout_width="20dp"
+			            android:layout_height="20dp"
+			            android:src="@drawable/wc" />
+
+			        <ImageView
+			            android:id="@+id/translate"
+			            android:layout_width="20dp"
+			            android:layout_height="20dp"
+			            android:layout_marginLeft="5dp"
+			            android:src="@drawable/translate_bg" />
+
+			        </LinearLayout>
+			    <TextView
+			        android:id="@+id/collectunit_end"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_alignParentRight="true"
+			        android:layout_alignParentTop="true"
+			        android:layout_margin="20dp"
+			        android:text="11号线" 
+			        android:textSize="18sp"
+			        android:textColor="@color/black"/>
+			   
+            </RelativeLayout>
+            <LinearLayout 
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:alpha="50">
+                
+            <View
+                android:layout_width="1dp"
+                android:layout_height="60dp"
+                android:background="#ff4500"
+                android:layout_gravity="center"
+                ></View>
+            <Button 
+                android:id="@+id/addtomenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="50"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="0dp"
+                android:textColor="@color/white"
+                android:text="@string/addTomenu"
+                android:background="@drawable/circularbutton"/>
+            
+            <Button 
+                android:id="@+id/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="50"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/white"
+                android:text="@string/delete"
+                android:background="@drawable/circularbutton"/>
+          
+            </LinearLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    
 
 </RelativeLayout>

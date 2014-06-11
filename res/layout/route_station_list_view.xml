@@ -2,15 +2,30 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:id="@+id/route_station_list_view_layout">
 
     <LinearLayout
         android:id="@+id/sation_view_image_layout"
-        android:layout_width="20dp"
+        android:layout_width="25dp"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:orientation="vertical" >
+        <ImageView 
+            android:id="@+id/station_view_wc"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:src="@drawable/wc"/>
+        <ImageView 
+            android:id="@+id/station_view_translate"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:src="@drawable/translate_bg"/>"
 
     </LinearLayout>
 
@@ -20,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="5dp"
         android:layout_toRightOf="@+id/sation_view_image_layout"
         android:text="地铁名" 
         android:textColor="@color/white"

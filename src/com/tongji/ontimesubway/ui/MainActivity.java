@@ -15,6 +15,7 @@ import com.tongji.ontimesubway.view.subwayMap;
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Display;
@@ -34,6 +35,19 @@ public class MainActivity extends BaseUI {
 	private subwayMap subwayMap=null;
 	private final Integer SELECT_STATION_TAG = 1;
 	private final Integer ROUTE_MAP_TAG		 = 2;
+	//选中站点后的跳转事件
+	private selectStationMap.SelectEvent selectevent=new selectStationMap.SelectEvent() {
+		
+		@Override
+		public void AfterGetStation(int StationID) {
+			// TODO Auto-generated method stub
+			Intent intent=new Intent();
+			intent.setClass(MainActivity.this, StationCenter.class);
+			intent.putExtra("StationID", StationID);
+			startActivity(intent);
+		}
+	};
+	
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +69,7 @@ public class MainActivity extends BaseUI {
 		layout.bringChildToFront(MapButton);
 		
 		Display display = getWindowManager().getDefaultDisplay();
-		selectStation=new selectStationMap();
+		selectStation=new selectStationMap(selectevent);
 		getFragmentManager().beginTransaction().replace(R.id.stationMapfragment, selectStation).commit();
 		
 	}
@@ -124,7 +138,9 @@ public class MainActivity extends BaseUI {
 				switch(clickView.getId()){
 				case R.id.title_left:
 					Intent collectIntent=new Intent();
+					
 					collectIntent.setClass(MainActivity.this,CollectCenterActivity.class);
+					//collectIntent.setClass(MainActivity.this,SelectItem.class);
 					startActivity(collectIntent);
 					//MainActivity.this.finish();
 					break;
@@ -146,7 +162,7 @@ public class MainActivity extends BaseUI {
 					else{
 						clickView.setTag(SELECT_STATION_TAG);
 						if(selectStation==null)	
-							selectStation=new selectStationMap();
+							selectStation=new selectStationMap(selectevent);
 						getFragmentManager().beginTransaction().replace(R.id.stationMapfragment, selectStation).commit();
 					}						
 					break;
@@ -155,6 +171,13 @@ public class MainActivity extends BaseUI {
 			}	
 		};
 		return ;
+	}
+
+	@Override
+	public Context getContext() {
+		// TODO Auto-generated method stub
+		Log.d("getContext",this.toString());
+		return this;
 	}
 
 }

@@ -11,12 +11,13 @@
     <application
         android:name="com.tongji.ontimesubway.base.BaseAppClient"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:theme="@style/myTitleTheme" >
         <activity
             android:name="com.tongji.ontimesubway.ui.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" 
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,24 +26,39 @@
         </activity>
         <activity
             android:name="com.tongji.ontimesubway.ui.CollectCenterActivity"
-            android:label="@string/title_activity_collect_cneter" >
+            android:label="@string/title_activity_collect_cneter" 
+            android:launchMode="singleTask">
         </activity>
         <activity
             android:name="com.tongji.ontimesubway.ui.StationCenter"
-            android:label="@string/title_activity_station_center" >
+            android:label="@string/title_activity_station_center" 
+            android:launchMode="singleTask">
         </activity>
         <activity
             android:name="com.tongji.ontimesubway.ui.RemindCenter"
-            android:label="@string/title_activity_remind_center" >
+            android:label="@string/title_activity_remind_center" 
+            android:launchMode="singleTask">
         </activity>
         <activity
             android:name="com.tongji.ontimesubway.ui.SelectStationPart"
-            android:label="@string/title_activity_select_station_part" 
+            android:label="@string/title_activity_select_station_part"
             android:theme="@style/MyPopStyle" >
         </activity>
+        <activity
+            android:name="com.tongji.ontimesubway.view.SelectItem"
+            android:label="@string/title_activity_select_item" 
+            android:theme="@style/MyPopStyle">
+        </activity>
+         <service 
+            android:name="com.tongji.ontimesubway.network.NotificationServer"/>
     </application>
 
     <!-- permission -->
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- 在SDCard中创建与删除文件权限 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <!-- 往SDCard写入数据权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>

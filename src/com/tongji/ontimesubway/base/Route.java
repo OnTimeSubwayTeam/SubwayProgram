@@ -50,7 +50,7 @@ public class Route {
 	}
 	public StationNote getLastStation()
 	{
-		return this.stationGroup==null ? null: this.endStation;
+		return this.stationGroup==null ? null: BaseAppClient.getStation(this.stationGroup.get(this.stationGroup.size()-1));
 		
 	}
 

@@ -7,19 +7,26 @@ import java.util.Map;
 
 import com.tongji.ontimesubway.R;
 import com.tongji.ontimesubway.base.BaseAppClient;
+import com.tongji.ontimesubway.base.BaseUI;
 import com.tongji.ontimesubway.base.Route;
+import com.tongji.ontimesubway.network.NotificationServer;
 
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
-public class RemindCenter extends Activity {
+public class RemindCenter extends BaseUI {
 
 	private Spinner start_route_spinner,start_station_spinner,start_direction_spinner;
 	private Spinner end_route_spinner,end_station_spinner;
@@ -28,14 +35,25 @@ public class RemindCenter extends Activity {
 	private ArrayAdapter start_route_adapter,start_station_adapter,start_direction_adapter;
 	private ArrayAdapter end_route_adapter,end_station_adapter;
 	
-	//
+	//button
+	private Button selectOK;
 	private ArrayList<Integer> routeIDList;
+	
+	//Í¨ÖªÀ¸service
+	private NotificationServer Notificationservice;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		if(savedInstanceState!=null) return;
 		setContentView(R.layout.activity_remind_center);
+		setTitleBar();
 		//init the spinner view 
 		initSpinner();
+		
+		//button 
+		selectOK=(Button)findViewById(R.id.rc_ok_button);
+		selectOK.setOnClickListener(listener);
+		//Notificationservice=new NotificationServer();
 	}
 
 	/**
@@ -134,6 +152,39 @@ public class RemindCenter extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.remind_center, menu);
 		return true;
+	}
+	@Override
+	public void setTitleBar()
+	{
+		super.setTitleBar();
+		this.titleLeft.setText(this.getResources().getText(R.string.back));
+		this.titleLeft.setOnClickListener(listener);
+		this.titleCenter.setText(this.getResources().getText(R.string.remind_center_title_center));
+		this.titleRight.setVisibility(View.GONE);
+	}
+	
+	OnClickListener listener=new OnClickListener(){
+		@Override
+		public void onClick(View view) {
+			// TODO Auto-generated method stub
+			switch(view.getId())
+			{
+			case R.id.title_left:
+				RemindCenter.this.finish();
+				break;
+			case R.id.rc_ok_button:
+				Intent intent=new Intent();
+				intent.setClass(RemindCenter.this, NotificationServer.class);
+				startService(intent);
+				Log.d("service","click");
+				break;
+			}
+		}		
+	};
+	@Override
+	public Context getContext() {
+		// TODO Auto-generated method stub
+		return this;
 	}
 
 }

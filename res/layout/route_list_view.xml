@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@color/white"
+    >
+	<RelativeLayout
+	    android:id="@+id/foreHeard"
+        android:layout_width="match_parent"
+        android:layout_height="20dp" 
+        android:background="@color/route_list_view_forhead">
+    	</RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/route_show_part"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/foreHeard" 
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        >
+
+        <TextView
+            android:id="@+id/route_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/black"
+            android:text="线路一" />
+
+        <TextView
+            android:id="@+id/route_time_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/route_name"
+            android:layout_alignBottom="@+id/route_name"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/route_name"
+            android:textColor="@color/black"
+            android:text="耗时：" />
+
+        <TextView
+            android:id="@+id/route_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/route_time_text"
+            android:layout_toRightOf="@+id/route_time_text"
+            android:textColor="@color/black"
+            android:text="3分45秒" />
+
+        <TextView
+            android:id="@+id/route_fee_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/route_time"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/route_time"
+            android:textColor="@color/black"
+            android:text="票价：" />
+        <TextView
+            android:id="@+id/route_fee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/route_fee_text"
+            android:layout_alignBottom="@+id/route_time"
+            android:text="5元"
+            android:textColor="@color/black"
+            ></TextView>
+        
+         <Button
+        	android:id="@+id/route_collect_botton"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_centerVertical="true"
+       	 	android:layout_alignParentRight="true"
+       	 	android:background="@drawable/titlebutton"
+        	android:text="@string/title_left_collect"
+        	android:paddingTop="7dp" 
+        	android:paddingBottom="7dp"
+        	android:paddingLeft="13dp"
+        	android:paddingRight="13dp"
+        	android:textColor="@color/white"/>
+         <com.tongji.ontimesubway.view.triangleView
+             android:id="@+id/triangle" 
+             android:layout_width="40dp"
+             android:layout_height="fill_parent"
+             android:layout_below="@+id/route_name"
+             android:layout_marginLeft="5dp"
+             android:visibility="gone"
+             />
+         
+        
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/route_hide_part"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@+id/route_show_part"
+        android:background="@color/grey"
+        android:visibility="gone"
+        >
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:scrollbars="none" >
+        
+        <LinearLayout
+            android:id="@+id/stationnote_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+             >
+            
+        </LinearLayout>
+        </HorizontalScrollView>
+         
+	</RelativeLayout>
+
+	
+</RelativeLayout>

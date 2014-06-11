@@ -37,6 +37,13 @@
 		<item name="android:windowContentOverlay">@null</item> 
 		<item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item> 
 		<item name="android:backgroundDimEnabled">true</item> 
-	</style>   
+	</style> 
+	
+	<style name="AnimationFade">  
+  
+    <!-- PopupWindow左右弹出的效果 -->  
+    <item name="android:windowEnterAnimation">@anim/menu_in</item>  
+    <item name="android:windowExitAnimation">@anim/menu_out</item>  
+</style>
 
 </resources>

@@ -7,12 +7,14 @@ import com.tongji.ontimesubway.R.layout;
 import com.tongji.ontimesubway.R.menu;
 import com.tongji.ontimesubway.adapter.CollectRouteAdapter;
 import com.tongji.ontimesubway.adapter.CollectStationAdapter;
+import com.tongji.ontimesubway.base.BaseAppClient;
 import com.tongji.ontimesubway.base.BaseUI;
 import com.tongji.ontimesubway.base.CollectRoute;
 import com.tongji.ontimesubway.base.StationNote;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
@@ -55,11 +57,12 @@ public class CollectCenterActivity extends BaseUI {
 		// TODO Auto-generated method stub
 		stationlistview=(ListView)findViewById(R.id.cs_listview);
 		routelistview=(ListView)findViewById(R.id.cr_listview);
-		ArrayList<Integer> Slist = new ArrayList<Integer>();
-		ArrayList<CollectRoute> Rlist = new ArrayList<CollectRoute>();
-		initData(Slist,Rlist);
-		CollectStationAdapter CSadapter=new CollectStationAdapter(this, Slist);
-		CollectRouteAdapter CRadapter=new CollectRouteAdapter(this,Rlist);
+		//ArrayList<Integer> Slist = new ArrayList<Integer>();
+		
+		
+		//initData(Slist,Rlist);
+		CollectStationAdapter CSadapter=new CollectStationAdapter(this, BaseAppClient.CollectStation,getWindowManager().getDefaultDisplay().getWidth());
+		CollectRouteAdapter CRadapter=new CollectRouteAdapter(this,BaseAppClient.getCollectRouteList(),getWindowManager().getDefaultDisplay().getWidth());
 		stationlistview.setAdapter(CSadapter);
 		routelistview.setAdapter(CRadapter);
 	}
@@ -70,14 +73,30 @@ public class CollectCenterActivity extends BaseUI {
 		ArrayList<Integer> routeID=new ArrayList<Integer>();
 		routeID.add(11);
 		routeID.add(12);
-		StationNote s1=new StationNote(1, "昌吉东路", null, null, null, routeID);
+		StationNote s1=new StationNote(1, "昌吉东路", null, null, routeID);
 		slist.add(s1.getStationID());
-		s1=new StationNote(2,"上海汽车城",null,null,null,routeID);
+		s1=new StationNote(2,"上海汽车城",null,null,routeID);
 		slist.add(s1.getStationID());
 		CollectRoute r1=new CollectRoute();
 		r1.setName("11号线");
 		r1.setStationGroup(slist);
-		rlist.add(r1);
+		//rlist.add(r1);
+		
+		ArrayList<Integer>group=new ArrayList<Integer>();
+		group.add(1);
+		group.add(2);
+		group.add(3);
+		group.add(4);
+		
+		//CollectrouteList=new ArrayList<CollectRoute>();
+		CollectRoute route1=new CollectRoute(group,5,60*20+35);
+		rlist.add(route1);
+		ArrayList<Integer> group2=new ArrayList<Integer>();
+		group2.add(1);
+		group2.add(2);
+		group2.add(3);
+		CollectRoute route2=new CollectRoute(group2,3,60*5+40);
+		rlist.add(route2);
 	}
 
 	@Override
@@ -162,5 +181,12 @@ public class CollectCenterActivity extends BaseUI {
 		this.titleCenter.setText(this.getString(R.string.title_center_collect));
 		this.titleLeft.setText(this.getString(R.string.back));
 		this.titleLeft.setOnClickListener(listener);
+	}
+
+	@Override
+	public Context getContext() {
+		// TODO Auto-generated method stub
+
+		return this;
 	}
 }

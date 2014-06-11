@@ -58,11 +58,11 @@
     </LinearLayout>"
   
 
-    <android.support.v4.view.ViewPager
+   <RelativeLayout
         android:id="@+id/stationCenterVP"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:layout_below="@+id/stationtitle"
-        >
-    </android.support.v4.view.ViewPager>
+        />
+
 </RelativeLayout>

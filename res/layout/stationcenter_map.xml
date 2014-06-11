@@ -1,12 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:id="@+id/stationCenter_map_layout" >
 
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="hello_map" />
+        android:id="@+id/stationCenter_map_b1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/b1"
+        android:background="@drawable/circle_press"
+        android:textColor="@color/white" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/stationCenter_map_b2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:layout_alignLeft="@+id/stationCenter_map_b1"
+        android:layout_below="@+id/stationCenter_map_b1"
+        android:layout_marginTop="20dp"
+        android:text="@string/b2"
+        android:background="@drawable/circle_normal"
+        android:textColor="@color/white" />
+
+    <com.tongji.ontimesubway.view.DragImageView
+        android:id="@+id/stationCenter_map_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:scaleType="fitXY"
+         />
+
+</RelativeLayout>

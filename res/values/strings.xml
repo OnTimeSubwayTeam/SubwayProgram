@@ -5,6 +5,7 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_left_collect">收藏</string>
+    <string name="cancelCollect">取消收藏</string>
     <string name="title_center_app">准点地铁</string>
     <string name="title_center_collect">我的收藏</string>
     <string name="title_right_reminder">提醒</string>
@@ -28,6 +29,12 @@
     <string name="enter">进入</string>
     <string name="line">号线</string>
     <string name="loadtext">玩命加载中...</string>
+    <string name="b1">B1</string>
+    <string name="b2">B2</string>
+    <string name="remind_center_title_center">设置提醒</string>
+    <string name="delete">删除</string>
     <string name="title_activity_select_station_part">SelectStationPart</string>
-
+    <string name="title_activity_select_item">SelectItem</string>
+    <string name="addTomenu">加入菜单</string>
+	<string name="removeFrommenu">移除菜单</string>
 </resources>

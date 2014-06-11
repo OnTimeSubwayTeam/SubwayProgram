@@ -2,6 +2,7 @@ package com.tongji.ontimesubway.base;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -13,6 +14,9 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,6 +24,7 @@ import org.json.JSONObject;
 
 import com.tongji.ontimesubway.R;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.Resources.NotFoundException;
@@ -64,7 +69,7 @@ public class JsonFile {
 		File file=new File(BaseKey.BaseFileDir+fileURL);
 		if(!file.getParentFile().exists())
 		{
-			file.getParentFile().mkdir();
+			file.getParentFile().mkdirs();
 		}
 		
 		// 写入内存卡  
@@ -75,6 +80,135 @@ public class JsonFile {
         } catch (FileNotFoundException e) {  
             e.printStackTrace();  
         } finally {  
+            if (outputStream != null) {  
+                outputStream.close();  
+            }  
+        }  
+		return true;
+	}
+	public <T> boolean writeListToFile(List<T> list, String fileURL)
+	{
+		File file=new File(BaseKey.BaseFileDir+fileURL);
+		if(!file.getParentFile().exists())
+		{
+			file.getParentFile().mkdirs();
+		}
+		 PrintStream outputStream = null;  
+	        try {  
+	            outputStream = new PrintStream(new FileOutputStream(file)); 
+	            for(int i=0;i<list.size();i++)
+	            	outputStream.println(((T)list.get(i)).toString());
+	            
+	        } catch (FileNotFoundException e) {  
+	            e.printStackTrace();  
+	        }  finally {  
+	            if (outputStream != null) {  
+	                outputStream.close();  
+	            }  
+	        }  
+			return true;
+	}
+	/**
+	 * 读取收藏的站占
+	 * @return
+	 */
+	public ArrayList<Integer> readCollectStation()
+	{
+		ArrayList<Integer> list=new ArrayList<Integer>();
+		InputStream in=null;
+		BufferedReader br=null;
+		//StringBuffer sb=new StringBuffer();
+		try{
+			File file=new File(BaseKey.BaseFileDir+BaseKey.CollectStationFile);
+			in=new FileInputStream(file);
+			Scanner scanner=new Scanner(in);
+			while(scanner.hasNext())
+			{
+				list.add(scanner.nextInt());
+			}
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+		finally{
+			try {
+				if(in!=null)
+					in.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return list;
+	}
+	
+	public ArrayList<RecentStation> readRecentStation()
+	{
+		ArrayList<RecentStation> list=new ArrayList<RecentStation>();
+		InputStream in=null;
+		BufferedReader br=null;
+		//StringBuffer sb=new StringBuffer();
+		try{
+			File file=new File(BaseKey.BaseFileDir+BaseKey.RecentStationFile);
+			in=new FileInputStream(file);
+			br=new BufferedReader(new InputStreamReader(in,"GBK"));
+			String JsonStr=null;
+			while((JsonStr=br.readLine())!=null)
+			{
+				list.add(RecentStation.getFromString(JsonStr));
+			}
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+		finally{
+			try {
+				if(in!=null)
+					in.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return list;
+	}
+	/**
+	 * 将map 里的value值以json的形式写进File里，每个value占一行
+	 * @param <T>
+	 * @return
+	 */
+	public <T> boolean writeMapToFile(HashMap<?,T> map,String fileURL)
+	{
+		File file=new File(BaseKey.BaseFileDir+fileURL);
+		if(!file.getParentFile().exists())
+		{
+			file.getParentFile().mkdirs();
+			Log.d("create","create");
+		}
+			
+		
+		// 写入内存卡  
+        PrintStream outputStream = null;  
+        try {  
+            outputStream = new PrintStream(new FileOutputStream(file)); 
+            Iterator it=map.entrySet().iterator();
+            while (it.hasNext()) {
+            	Map.Entry entry = (Map.Entry) it.next();
+            	T value = (T) entry.getValue();
+            	JSONObject json=new JSONObject(value.toString());
+            	outputStream.print(json.toString());
+            	outputStream.print("\r\n");
+            	}  
+        } catch (FileNotFoundException e) {  
+            e.printStackTrace();  
+        } catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {  
             if (outputStream != null) {  
                 outputStream.close();  
             }  
@@ -128,7 +262,8 @@ public class JsonFile {
 		}
 		finally{
 			try {
-				in.close();
+				if(in!=null)
+					in.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -181,7 +316,8 @@ public class JsonFile {
 		}
 		finally{
 			try {
-				in.close();
+				if(in!=null)
+					in.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -189,6 +325,64 @@ public class JsonFile {
 		}
 		return RouteMap;
 	}
+	
+	/**
+	 * 读取收藏的站点信息
+	 * @return
+	 */
+	@SuppressLint("UseSparseArrays")
+	public HashMap<Integer,CollectRoute> readCollectRoute()
+	{
+		HashMap<Integer, CollectRoute> RouteMap=new HashMap<Integer, CollectRoute>();
+		
+		
+		//读取目录下的收藏内容
+		InputStream in=null;
+		BufferedReader br=null;
+		//StringBuffer sb=new StringBuffer();
+		try{
+			File file=new File(BaseKey.BaseFileDir+BaseKey.CollectRouteFile);
+			in=new FileInputStream(file);
+			br=new BufferedReader(new InputStreamReader(in,"GBK"));
+			String JsonStr=null;
+			while((JsonStr=br.readLine())!=null)
+			{
+				//把JsonStr变为JsonObject
+				JSONObject json=new JSONObject(JsonStr);
+				//把JsonObject 变成  Route实例
+				CollectRoute route=(CollectRoute)this.Json2Object(json,"CollectRoute");
+				//将StationNote 加入Map里
+				Log.d("json collectroute=",route.toString());
+				RouteMap.put(route.getID(), route);
+			}
+		}
+		catch(NotFoundException e)
+		{
+			e.printStackTrace();
+		}
+		catch(UnsupportedEncodingException e)
+		{
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally{
+			try {
+				if(in!=null)
+					in.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		return RouteMap;
+	}
+	
 	
 	/**
 	 * 将JSONOJect 实例转变为ObjectName的实例
@@ -205,6 +399,8 @@ public class JsonFile {
 		Class object=null;
 		try {
 			object=Class.forName(ObjectURL);
+			Log.d("object=",object.getName());
+			
 			objectinstance=object.newInstance();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -224,7 +420,8 @@ public class JsonFile {
 	    	String varField=it.next();
 	    	Field field=null;
 	    	try {
-				field=object.getDeclaredField(varField);
+				field=getField(object,varField);
+				Log.d("field=",field.getName());
 				//设置为可修改
 				field.setAccessible(true);
 				//Log.d("JsonFile",field.getType().toString());
@@ -265,6 +462,24 @@ public class JsonFile {
 			}
 	    }
 	    return objectinstance;
+	}
+	
+	//获得clazz的域或父类的域
+	public Field getField(Class clazz,String varField) throws NoSuchFieldException
+	{
+		Field field=null;
+		try {
+			field=clazz.getDeclaredField(varField);
+		} catch (NoSuchFieldException e) {
+			// TODO Auto-generated catch block
+			try {
+				field=clazz.getSuperclass().getDeclaredField(varField);
+			} catch (NoSuchFieldException e1) {
+				// TODO Auto-generated catch block
+				throw e1;
+			}
+		}
+		return field;
 	}
 
 }

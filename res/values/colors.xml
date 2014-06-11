@@ -162,6 +162,7 @@
 <color name="station_button_10">#d1b2d0</color>
 <color name="station_button_11">#741229</color>
 <color name="real_unit">#666666</color>
+<color name="route_list_view_forhead">#CCCC99</color>
 
 
 </resources>

@@ -7,6 +7,12 @@
     android:background="@color/grey"
     >
 
+    <View 
+        android:id="@+id/menuShowLocation"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentTop="true"
+        />
     <Button
         android:id="@+id/title_left"
         android:layout_width="wrap_content"

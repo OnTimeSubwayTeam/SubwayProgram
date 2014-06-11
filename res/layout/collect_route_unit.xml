@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <HorizontalScrollView
+        android:id="@+id/collect_route_unit_hs"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:id="@+id/collect_route_left"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                 <TextView
+				        android:id="@+id/collectunit_start"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:layout_alignParentLeft="true"
+				        android:layout_alignParentTop="true"
+				        android:layout_margin="20dp"
+				        android:text="昌吉东路" 
+				        android:textSize="18sp"
+				        android:textColor="@color/black"/>
+
+			    <TextView
+			        android:id="@+id/collectunit_center"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_alignBaseline="@+id/collectunit_start"
+			        android:layout_centerHorizontal="true"
+			        android:text="--->"
+			        android:textSize="20sp"
+			         />
+
+			    <TextView
+			        android:id="@+id/collectunit_end"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_alignParentRight="true"
+			        android:layout_alignParentTop="true"
+			        android:layout_margin="20dp"
+			        android:text="11号线" 
+			        android:textSize="18sp"
+			        android:textColor="@color/black"/>
+			    <RelativeLayout 
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_above="@+id/triangle"
+			        android:layout_centerHorizontal="true"
+			        >
+					    <TextView
+					        android:id="@+id/route_price_text"
+					        android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"			        
+					        android:text="票价:"
+					        android:textColor="@color/black"
+					        />
+					    <TextView 
+					        android:id="@+id/route_price" 
+					        android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"
+					        android:layout_toRightOf="@+id/route_price_text"
+					        android:layout_alignBottom="@+id/route_price_text"
+					        android:text="5元"
+					        />
+					    <TextView
+					        android:id="@+id/route_time_text"
+					        android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"
+					        android:layout_toRightOf="@+id/route_price"
+					        android:layout_marginLeft="20dp"
+					        android:layout_alignBottom="@+id/route_price_text"
+					        android:text="耗时："
+					        android:textColor="@color/black"
+					        />
+					    <TextView
+					        android:id="@+id/route_time"
+					        android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"
+					        android:layout_toRightOf="@+id/route_time_text"
+					        android:layout_alignBottom="@+id/route_price_text"
+					        android:text="5分45秒"
+					        />
+			    </RelativeLayout>
+			    <com.tongji.ontimesubway.view.triangleView
+		             android:id="@+id/triangle" 
+		             android:layout_width="40dp"
+		             android:layout_height="40px"
+		             android:layout_centerHorizontal="true"
+		             android:layout_alignParentBottom="true"
+		             android:layout_marginLeft="5dp"	
+		             android:visibility="invisible"             
+		             />
+            </RelativeLayout>
+            <LinearLayout 
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:alpha="50">
+                "
+            <View
+                android:layout_width="1dp"
+                android:layout_height="60dp"
+                android:background="#ff4500"
+                android:layout_gravity="center"
+                ></View>
+            
+            <Button 
+                android:id="@+id/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="50"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/white"
+                android:text="@string/delete"
+                android:background="@drawable/circularbutton"/>
+          
+            </LinearLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <RelativeLayout
+        android:id="@+id/route_hide_part"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/grey" 
+        android:visibility="gone">
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:scrollbars="none" >
+        
+        <LinearLayout
+            android:id="@+id/stationnote_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+             >
+            
+        </LinearLayout>
+        </HorizontalScrollView>
+         
+	</RelativeLayout>
+
+</LinearLayout>

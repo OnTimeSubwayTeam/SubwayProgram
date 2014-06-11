@@ -10,14 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_margin="10dp" >
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp" >
 
         <TextView
             android:id="@+id/rc_now_location_textview"
             android:layout_width="20dp"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="@color/black"
             android:text="@string/remind_center_now_location" />
 
         <LinearLayout
@@ -33,10 +35,12 @@
                 android:id="@+id/rc_selected_route_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:text="@string/remind_center_selected_route" />
 
             <Spinner
                 android:id="@+id/rc_selected_start_route_spinner"
+                android:layout_marginLeft="20dp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -54,11 +58,13 @@
                 android:id="@+id/rc_select_station_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:text="@string/remind_center_selected_station" />
 
             <Spinner
                 android:id="@+id/rc_selected_start_station_spinner"
                 android:layout_width="fill_parent"
+                android:layout_marginLeft="20dp"
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
@@ -74,11 +80,14 @@
                 android:id="@+id/rc_select_direction_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:text="@string/remind_center_selected_direction" />
 
             <Spinner
                 android:id="@+id/rc_selected_start_direction_spinner"
                 android:layout_width="fill_parent"
+                android:layout_marginLeft="20dp"
+                
                 android:layout_height="wrap_content" />
         </LinearLayout>
     </RelativeLayout>
@@ -89,7 +98,8 @@
         android:layout_height="120dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/rc_start_location"
-        android:layout_margin="10dp" >
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp" >
 
         <TextView
             android:id="@+id/rc_selected_end_textview"
@@ -97,6 +107,8 @@
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="@color/black"
             android:text="@string/remind_center_end_location" >
         </TextView>
 
@@ -112,11 +124,13 @@
                 android:id="@+id/rc_select_end_route_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:text="@string/remind_center_selected_route" />
 
             <Spinner
                 android:id="@+id/rc_selected_end_route_spinner"
                 android:layout_width="fill_parent"
+                android:layout_marginLeft="20dp"
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
@@ -132,11 +146,13 @@
                 android:id="@+id/rc_select_end_station_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:text="@string/remind_center_selected_station" />
 
             <Spinner
                 android:id="@+id/rc_selected_end_station_spinner"
                 android:layout_width="fill_parent"
+                android:layout_marginLeft="20dp"
                 android:layout_height="wrap_content" />
         </LinearLayout>
     </RelativeLayout>

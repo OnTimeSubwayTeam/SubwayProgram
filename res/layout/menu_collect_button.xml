@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="80dp"
+    android:layout_height="80dp"    
+     >
+
+    <TextView
+        android:id="@+id/collect_button_center"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/station_button_8"
+        android:gravity="center"
+        android:text="曹安路"
+        android:textSize="15sp"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/collect_button_up_delete"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/up_detele_part" 
+        android:visibility="invisible"/>
+
+</RelativeLayout>

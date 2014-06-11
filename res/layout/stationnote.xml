@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+<RelativeLayout 
+    android:id="@+id/stationnote_uppart"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    >
+    <TextView 
+        android:id="@+id/stationnote_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="西安路"
+        android:textSize="13sp"
+        android:textColor="@color/white"
+        />
+</RelativeLayout>
+<RelativeLayout 
+    android:id="@+id/stationnote_centerpart"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/stationnote_uppart">
+    <TextView
+        android:id="@+id/stationnote_pre"
+        android:layout_width="20dp"
+        android:layout_height="5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:background="@color/red"
+        android:text="" />
+
+    <com.tongji.ontimesubway.view.StationNoteCenterView
+        android:id="@+id/stationnote_center"
+        android:layout_width="40px"
+        android:layout_height="40px"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/stationnote_pre" />
+    <TextView
+        android:id="@+id/stationnote_next"
+        android:layout_width="20dp"
+        android:layout_height="5dp"
+        android:layout_toRightOf="@+id/stationnote_center"
+        android:layout_centerVertical="true"
+        android:background="@color/red"
+        android:text="" />
+  </RelativeLayout>
+  <TextView
+      android:id="@+id/stationnote_bottom"  
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/stationnote_centerpart"
+      android:layout_centerHorizontal="true"
+      android:text="可换3号线"
+      android:textSize="10sp"
+      android:visibility="invisible"
+      />
+      
+    
+</RelativeLayout>
