@@ -6,6 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.tongji.ontimesubway.R;
 import com.tongji.ontimesubway.adapter.RealTimeShowAdapter;
 import com.tongji.ontimesubway.base.BaseAppClient;
@@ -204,9 +208,9 @@ public class StationCenter extends BaseUI{
 		 private boolean isLoading=false;
 		 
 		 //map界面的变量
-		 private Map<Integer,SoftReference<Bitmap>> imageBitMap;
 		 private TextView b1,b2;
 		 private DragImageView map;
+		 private int loadImagePosition=-1;
 		 @Override
 		 public void onCreate(Bundle savedInstanceState)
 		 {
@@ -225,7 +229,7 @@ public class StationCenter extends BaseUI{
 			 */
 			public void initData()
 			{
-				StationRoute sr=new StationRoute("4号线",4,"曹杨路",32);
+				StationRoute sr=new StationRoute("4号线",4,6,32);
 				sr.InitTime(120, 400, 600);
 				this.real_Time_list.add(sr);
 			}
@@ -260,6 +264,8 @@ public class StationCenter extends BaseUI{
 		 		 else if(position==1)
 		 		 {
 		 			 view=inflater.inflate(R.layout.stationcenter_map, null);
+		 			//控制imageView的显示，使其可以恢复以前的那张图
+		 			 map =(DragImageView)view.findViewById(R.id.stationCenter_map_image);
 		 			  b1=(TextView)view.findViewById(R.id.stationCenter_map_b1);
 		 			  b2=(TextView)view.findViewById(R.id.stationCenter_map_b2);
 		 			 if(selectStationNote.getMapURL()==null)
@@ -269,21 +275,36 @@ public class StationCenter extends BaseUI{
 		 			 else if(selectStationNote.getMapURL().size()==1)
 		 			 {
 		 				 RelativeLayout layout=(RelativeLayout)view.findViewById(R.id.stationCenter_map_layout);
-		 				 layout.bringChildToFront(b1);		 				 
+		 				 layout.bringChildToFront(b1);
+		 				 if(loadImagePosition>=0)
+		 				 {
+		 					BaseAppClient.imageCache.getImage(map, selectStationNote.getMapURL().get(loadImagePosition));
+		 				 }
+		 				 else {
+		 					 BaseAppClient.imageCache.getImage(map, selectStationNote.getMapURL().get(0));
+		 					 loadImagePosition=0;
+		 				 }
 		 				 //b1.setOnClickListener(floorButtonlistener);
 		 			 }
-		 			 else if(selectStationNote.getMapURL().size()==2)
+		 			 else if(selectStationNote.getMapURL().size()>=2)
 		 			 {
 		 				 RelativeLayout layout=(RelativeLayout)view.findViewById(R.id.stationCenter_map_layout);
 		 				 layout.bringChildToFront(b1);
 		 				 layout.bringChildToFront(b2);
 		 				 b1.setOnClickListener(floorButtonlistener);
 		 				 b2.setOnClickListener(floorButtonlistener);
+		 				if(loadImagePosition>=0)
+		 				 {
+		 					BaseAppClient.imageCache.getImage(map, selectStationNote.getMapURL().get(loadImagePosition));
+		 				 }
+		 				else {
+		 				 BaseAppClient.imageCache.getImage(map, selectStationNote.getMapURL().get(0));
+		 				loadImagePosition=0;
+		 				}
 		 			 }
 		 			 
 		 			 
-		 			 //控制imageView的显示，使其可以恢复以前的那张图
-		 			map =(DragImageView)view.findViewById(R.id.stationCenter_map_image);
+		 			 
 		 			WindowManager manager = this.getActivity().getWindowManager();
 			        int window_width = manager.getDefaultDisplay().getWidth();
 					int window_height = manager.getDefaultDisplay().getHeight();
@@ -331,9 +352,42 @@ public class StationCenter extends BaseUI{
 				@Override
 				public void onPostExecute(String result) {
 					// TODO Auto-generated method stub
+					
 					Log.d("main netresult",result);
 					//将获取到的结果更新到real_Time_adapter
-					
+					JSONObject resultJson=null;
+					try {
+						resultJson=new JSONObject(result);
+						JSONArray resultArray=resultJson.getJSONArray("output");
+						if(resultArray!=null)
+						{
+							
+							ArrayList<String> Mapurl=new ArrayList<String>();
+							for(int i=0;i<resultJson.length();i++)
+							{
+								JSONObject route=(JSONObject)resultArray.get(i);
+								if(route!=null)
+								{
+									int routeID=route.getInt("myStationRoute");
+									int goalStationID=route.getInt("myGoalStation");
+									int firstTime=route.getInt("firstTime");
+									int secondTime=route.getInt("secondTime");
+									int thirdTime=route.getInt("thirdTime");
+									String mapURL=route.getString("picturePath");
+									StationRoute sr=new StationRoute(BaseAppClient.getRoute(routeID).getName(),
+											routeID,goalStationID,selectStationNote.getStationID());
+									sr.InitTime(firstTime, secondTime, thirdTime);
+									real_Time_adapter.update(sr);
+									Mapurl.add(mapURL);
+									
+								}
+							}
+							selectStationNote.setMapURL(Mapurl);
+						}
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 
 				@Override
@@ -378,11 +432,13 @@ public class StationCenter extends BaseUI{
 						view.setBackgroundResource(R.drawable.circle_press);
 						b2.setBackgroundResource(R.drawable.circle_normal);
 						BaseAppClient.imageCache.getImage(map, selectStationNote.getMapURL().get(0));
+						loadImagePosition=0;
 						break;
 					case R.id.stationCenter_map_b2:
 						b2.setBackgroundResource(R.drawable.circle_press);
 						b1.setBackgroundResource(R.drawable.circle_normal);
 						BaseAppClient.imageCache.getImage(map, selectStationNote.getMapURL().get(1));
+						loadImagePosition=1;
 						break;
 					}
 				}

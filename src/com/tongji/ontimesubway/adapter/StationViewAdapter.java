@@ -85,6 +85,7 @@ public class StationViewAdapter extends BaseAdapter{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		Log.d("StationID=",String.valueOf(mList.get(position)));
 		String stationName=BaseAppClient.getStation(mList.get(position)).getName();
 		holder.station.setText(stationName);
 		if(BaseAppClient.getStation(mList.get(position)).getIsWC()==0)
@@ -115,6 +116,7 @@ public class StationViewAdapter extends BaseAdapter{
 	{
 		this.RouteID=RouteID;
 		mList=list;
+		Log.d("size",String.valueOf(mList.size()));
 		this.notifyDataSetChanged();
 		
 	}

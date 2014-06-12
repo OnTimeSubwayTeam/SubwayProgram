@@ -110,6 +110,11 @@ public class RemindCenter extends BaseUI {
 					start_station_adapter.add(BaseAppClient.getStation(stationGroup.get(i)).getName());
 				}
 				start_station_spinner.setAdapter(start_station_adapter);
+				start_direction_adapter=new ArrayAdapter<String>(RemindCenter.this,android.R.layout.simple_spinner_item);
+				start_direction_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+				start_direction_adapter.add(BaseAppClient.getRoute(routeIDList.get(position)).getFirstStation().getName());
+				start_direction_adapter.add(BaseAppClient.getRoute(routeIDList.get(position)).getLastStation().getName());
+				start_direction_spinner.setAdapter(start_direction_adapter);
 			}
 
 			@Override

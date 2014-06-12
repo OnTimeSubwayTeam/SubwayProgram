@@ -75,11 +75,11 @@ public class CollectStationAdapter extends BaseAdapter {
 		}
 		if(BaseAppClient.getStation(mList.get(position)).getIsWC()==0)
 		{
-			holder.wc.setVisibility(View.VISIBLE);
+			holder.wc.setVisibility(View.INVISIBLE);
 		}
 		else 
 		{
-			holder.wc.setVisibility(View.INVISIBLE);
+			holder.wc.setVisibility(View.VISIBLE);
 		}
 		if(BaseAppClient.getStation(mList.get(position)).getRouteGroup().size()>1)
 		{

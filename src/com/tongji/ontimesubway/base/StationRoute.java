@@ -11,7 +11,7 @@ public class StationRoute {
 	private String routeName;
 	private int routeID;
 	private int stationID;
-	private String stationName;
+	private int goalStationID;
 	//最多显示三辆车
 	private int trainTime[];
 
@@ -19,13 +19,13 @@ public class StationRoute {
 	{
 		trainTime=new int[3];
 	}
-	public StationRoute(String routeName, int routeId,String stationName,int stationID)
+	public StationRoute(String routeName, int routeId,int goalStationID,int stationID)
 	{
 		this.trainTime=new int[3];
 		this.setRouteName(routeName);
 		this.setRouteID(routeId);
-		this.setStationName(stationName);
 		this.setStationID(stationID);
+		this.setGoalStationID(goalStationID);
 	}
 	/**
 	 * init time that trains arrive the station 
@@ -82,20 +82,15 @@ public class StationRoute {
 	public void setStationID(int stationID) {
 		this.stationID = stationID;
 	}
-	public String getStationName() {
-		return stationName;
-	}
-	public void setStationName(String stationName) {
-		this.stationName = stationName;
-	}
+	
 	/**
-	 * 只要认为两个实例的routeID相等，则认为两个对象是相等的
+	 * 只要认为两个实例的routeID和目的地相等，则认为两个对象是相等的
 	 * @param obj2
 	 * @return
 	 */
 	public boolean equals(StationRoute obj2) 
 	{
-		if(this.getRouteID()==obj2.getRouteID())
+		if(this.getRouteID()==obj2.getRouteID()&&this.getGoalStationID()==obj2.getGoalStationID())
 			return true;
 		else 
 			return false;
@@ -109,5 +104,11 @@ public class StationRoute {
 		this.trainTime[0]=obj2.trainTime[0];
 		this.trainTime[1]=obj2.trainTime[1];
 		this.trainTime[2]=obj2.trainTime[2];
+	}
+	public int getGoalStationID() {
+		return goalStationID;
+	}
+	public void setGoalStationID(int goalStationID) {
+		this.goalStationID = goalStationID;
 	}
 }

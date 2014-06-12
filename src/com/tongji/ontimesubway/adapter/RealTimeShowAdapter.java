@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.util.List;
 
 import com.tongji.ontimesubway.R;
+import com.tongji.ontimesubway.base.BaseAppClient;
 import com.tongji.ontimesubway.base.BaseKey;
 import com.tongji.ontimesubway.base.StationRoute;
 
@@ -64,6 +65,7 @@ public class RealTimeShowAdapter extends BaseAdapter{
 			holder.firstTime=(TextView)convertView.findViewById(R.id.real_first);
 			holder.secondTime=(TextView)convertView.findViewById(R.id.real_second);
 			holder.thirdTime=(TextView)convertView.findViewById(R.id.real_third);
+			holder.goalStation=(TextView)convertView.findViewById(R.id.real_goal_station);
 			convertView.setTag(holder);
 		}
 		else 
@@ -88,6 +90,7 @@ public class RealTimeShowAdapter extends BaseAdapter{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		holder.goalStation.setText(BaseAppClient.getStation(mlist.get(position).getGoalStationID()).getName()+"\n·½Ïò");
 		holder.firstTime.setText(this.mlist.get(position).getTime(0).append(realAppendStr));
 		holder.secondTime.setText(this.mlist.get(position).getTime(1).append(realAppendStr));
 		holder.thirdTime.setText(this.mlist.get(position).getTime(2).append(realAppendStr));
@@ -98,7 +101,8 @@ public class RealTimeShowAdapter extends BaseAdapter{
 		private TextView routeName;
 		private TextView firstTime;
 		private TextView secondTime;
-		private TextView thirdTime;		
+		private TextView thirdTime;	
+		private TextView goalStation;
 	}
 	
 	

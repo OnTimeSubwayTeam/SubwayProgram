@@ -2,8 +2,14 @@ package com.tongji.ontimesubway.view;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.tongji.ontimesubway.R;
 import com.tongji.ontimesubway.base.CollectRoute;
+import com.tongji.ontimesubway.network.NetAsynctask;
+import com.tongji.ontimesubway.network.NetTask;
 
 import android.annotation.SuppressLint;
 import android.app.Fragment;
@@ -61,6 +67,7 @@ public class RouteSelectShow extends Fragment{
 	
 	public void initRouteShow()
 	{
+		layout.removeAllViews();
 		for(int i=0;i<CollectrouteList.size();i++)
 		{
 			Log.d("init",String.valueOf(i));
@@ -72,5 +79,60 @@ public class RouteSelectShow extends Fragment{
 		layout.invalidate();
 	}
 	
+	
+	private NetAsynctask preTask=null;
+	private NetTask nettask=new NetTask(){
+
+		@Override
+		public void onPreExecute(NetAsynctask task) {
+			// TODO Auto-generated method stub
+			//取消之前的任务
+			if(preTask!=task&&preTask!=null){
+				preTask.Cancel();
+				preTask=task;
+			}
+			else 
+				preTask=task;
+		}
+
+		@Override
+		public void onPostExecute(String result) {
+			// TODO Auto-generated method stub
+			Log.d("main netresult",result);
+			//将获取到的结果更新到real_Time_adapter
+			JSONObject resultJson=null;
+			try {
+				resultJson=new JSONObject(result);
+				//JSONArray resultArray=resultJson.getJSONArray("output");
+				if(resultJson!=null)
+				{
+					int time=resultJson.getInt("timeCost");
+					int price=resultJson.getInt("price");
+					JSONArray jsonList=resultJson.getJSONArray("path");
+					ArrayList<Integer>stationList=new ArrayList<Integer>();
+					for(int i=0;i<jsonList.length();i++)
+					{
+						stationList.add(jsonList.getInt(i));
+					}
+					CollectRoute route=new CollectRoute(stationList,price,time);
+					CollectrouteList.add(route);
+					
+					//更新界面
+					initRouteShow();
+				}
+			}
+			catch(JSONException e)
+			{
+				
+			}
+		}
+
+		@Override
+		public void onError(Exception e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	};
 	
 }
